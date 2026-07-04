@@ -1,0 +1,16 @@
+{
+  "name": "Berita Internasional Gamers",
+  "short_name": "BIG",
+  "description": "Aplikasi agregator berita esports terpercaya.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0B0E14",
+  "theme_color": "#6200EA",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
