@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://beritainternasionalgamers.github.io/sitemap.xml
+Sitemap: https://adiajahh777-png.github.io/Website-Saya/sitemap.xml

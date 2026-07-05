@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+import os
+import glob
+
+terms_content = """<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Berita Internasional Gamers</title>
-    <meta name="description" content="Pelajari lebih lanjut tentang Berita Internasional Gamers, platform agregator berita esports yang mengumpulkan berita dari berbagai penerbit tepercaya.">
-    <meta name="keywords" content="about us, tentang kami, berita internasional gamers, agregator esports">
+    <title>Terms of Service - Berita Internasional Gamers</title>
+    <meta name="description" content="Syarat dan Ketentuan layanan aplikasi agregator berita esports Berita Internasional Gamers.">
+    <meta name="keywords" content="terms of service, syarat dan ketentuan, berita internasional gamers">
     <meta name="author" content="Adi gunawan">
     <meta name="theme-color" content="#6200EA">
-    <meta property="og:title" content="About Us - Berita Internasional Gamers">
-    <meta property="og:description" content="Pelajari lebih lanjut tentang platform agregator berita esports kami.">
+    <meta property="og:title" content="Terms of Service - Berita Internasional Gamers">
+    <meta property="og:description" content="Syarat dan Ketentuan layanan aplikasi agregator berita esports kami.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://adiajahh777-png.github.io/Website-Saya/about.html">
-    <link rel="canonical" href="https://adiajahh777-png.github.io/Website-Saya/about.html">
+    <meta property="og:url" content="https://adiajahh777-png.github.io/Website-Saya/terms.html">
+    <link rel="canonical" href="https://adiajahh777-png.github.io/Website-Saya/terms.html">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="robots" content="index, follow">
@@ -25,7 +28,6 @@
       "url": "https://adiajahh777-png.github.io/Website-Saya/"
     }
     </script>
-    <meta property="og:image" content="https://adiajahh777-png.github.io/Website-Saya/logo.png">
 </head>
 <body>
     <header>
@@ -36,28 +38,29 @@
             </button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
                 <li><a href="privacy.html">Privacy Policy</a></li>
                 <li><a href="sources.html">Sumber Berita</a></li>
                 <li><a href="copyright.html">Copyright</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="container page-section">
-            <h1 class="page-title">About Us</h1>
-            <p class="last-updated" style="text-align: center; color: #666; margin-top: -10px; margin-bottom: 20px; font-style: italic;">Last Updated: July 2026</p>
+            <h1 class="page-title">Terms of Service</h1>
             
             <article class="content-card">
-                <h2>Apa itu Berita Internasional Gamers?</h2>
-                <p>Berita Internasional Gamers adalah aplikasi agregator berita esports yang dirancang khusus untuk para gamer dan penggemar industri esports. Kami berkomitmen untuk menyajikan informasi tercepat, terkini, dan paling relevan mengenai turnamen, pemain, serta tren game dari seluruh dunia.</p>
-                
-                <h2>Komitmen Terhadap Hak Cipta</h2>
-                <p>Sebagai platform agregator, Berita Internasional Gamers mengumpulkan dan mengkurasi tautan serta ringkasan berita dari <a href="sources.html" class="primary-link">berbagai sumber dan penerbit terpercaya</a>. <strong>Kami tidak mengklaim kepemilikan atas artikel penuh atau materi yang dihubungkan melalui platform kami.</strong></p>
-                
-                <p>Setiap hak cipta, merek dagang, dan kepemilikan intelektual lainnya sepenuhnya tetap menjadi milik penerbit dan penulis asli. Tujuan kami adalah memudahkan pengguna untuk menemukan konten berkualitas sambil memberikan trafik kembali (backlink) kepada para pembuat konten asli. Jika Anda adalah pemilik hak cipta dan ingin meminta penghapusan, silakan merujuk ke halaman <a href="copyright.html" class="primary-link">Copyright & Takedown</a> kami.</p>
+                <ul>
+                    <li><strong>Berita Internasional Gamers</strong> adalah aplikasi agregator berita esports.</li>
+                    <li>Seluruh artikel, gambar, logo, dan merek dagang tetap menjadi milik penerbit aslinya.</li>
+                    <li>Aplikasi hanya menampilkan ringkasan berita dan tautan menuju sumber resmi.</li>
+                    <li>Pengguna bertanggung jawab atas penggunaan informasi yang diperoleh.</li>
+                    <li>Pengembang dapat memperbarui layanan dan syarat penggunaan sewaktu-waktu.</li>
+                    <li>Pengembang tidak menjamin seluruh informasi selalu akurat karena berasal dari pihak ketiga.</li>
+                </ul>
             </article>
         </section>
     </main>
@@ -78,7 +81,6 @@
                     <li><a href="sources.html">Sumber Berita</a></li>
                     <li><a href="copyright.html">Copyright</a></li>
                     <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="disclaimer.html">Disclaimer</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -94,4 +96,27 @@
     </footer>
     <script src="script.js"></script>
 </body>
-</html>
+</html>"""
+
+with open('terms.html', 'w', encoding='utf-8') as f:
+    f.write(terms_content)
+
+html_files = glob.glob('*.html')
+for file in html_files:
+    if file == 'terms.html': continue
+    with open(file, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # URL replacement for all remaining files
+    content = content.replace('https://beritainternasionalgamers.github.io/', 'https://adiajahh777-png.github.io/Website-Saya/')
+    
+    # Update navbar & footer. Replace <a href="copyright.html">Copyright</a> with Copyright and Terms
+    nav_search = '<li><a href="copyright.html">Copyright</a></li>'
+    nav_replace = '<li><a href="copyright.html">Copyright</a></li>\n                <li><a href="terms.html">Terms of Service</a></li>'
+    
+    if nav_search in content and '<li><a href="terms.html">Terms of Service</a></li>' not in content:
+        content = content.replace(nav_search, nav_replace)
+
+    with open(file, 'w', encoding='utf-8') as f:
+        f.write(content)
+print('Done!')
