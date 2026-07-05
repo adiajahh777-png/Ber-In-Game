@@ -327,8 +327,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             title: const Text('Hubungi Kami', style: TextStyle(fontSize: 12, color: Colors.white)),
                             trailing: const Icon(Icons.chevron_right, size: 16, color: AppColors.textMuted),
                             onTap: () async {
-                              final url = Uri.parse('mailto:adiajahh777@gmail.com');
-                              if (!await launchUrl(url)) {
+                              // Menggunakan halaman kontak website agar pasti bisa diakses dari browser/platform manapun
+                              final url = Uri.parse('https://adiajahh777-png.github.io/Website-Saya/contact.html');
+                              if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
                                 debugPrint('Could not launch $url');
                               }
                             },

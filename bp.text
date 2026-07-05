@@ -1,1 +1,71 @@
-bp.text
+=============================================================================
+             BLUEPRINT PROYEK: BERITA INTERNASIONAL GAMERS
+=============================================================================
+Nama Proyek   : Ber_In_Game (cari_teman_mabar)
+Kategori      : News & Magazines (Esports Aggregator)
+Platform      : Android, Web (Flutter)
+SDK Target    : API 35 (Android 15 Ready), Min SDK 21
+=============================================================================
+
+1. DESKRIPSI SISTEM
+Aplikasi ini adalah agregator berita Esports yang mengumpulkan dan menampilkan 
+berita dari berbagai sumber (API eksternal seperti MMOBomb) dan menyediakan 
+data cadangan (Mock Data) secara offline. Aplikasi ini dirancang agar 100% patuh 
+terhadap kebijakan Google Play (News & Magazines Policy), memiliki sistem 
+Keamanan Jaringan (Hanya HTTPS), serta terbebas dari package yang rawan pelanggaran.
+
+2. ARSITEKTUR & STACK TEKNOLOGI
+- Framework  : Flutter (Dart)
+- State Mgt  : Provider (ChangeNotifier)
+- Database   : Firebase Cloud Firestore (opsional/hybrid dengan Local Mock Data)
+- Auth       : Firebase Auth, Google Sign-In, Facebook Auth
+- Desain     : Material Design 3 (Dark Theme eksklusif)
+- Animasi    : Flutter Animate & Lottie
+
+3. STRUKTUR DIREKTORI UTAMA (Folder `lib/`)
+lib/
+ ├── models/
+ │    └── article_model.dart        # Blueprint struktur data artikel (termasuk sourceName & sourceUrl)
+ ├── providers/
+ │    ├── auth_provider.dart        # Mengurus siklus login/logout & data User
+ │    ├── news_provider.dart        # Mengurus fetch API berita, translasi, dan Mock offline
+ │    └── tournament_provider.dart  # Data jadwal turnamen Esports
+ ├── views/
+ │    ├── screens/
+ │    │    ├── auth/                # Halaman Login
+ │    │    ├── home/                # Beranda & Detail Artikel
+ │    │    ├── profile/             # Profil Gamer, Pengaturan, Info Kebijakan Privasi
+ │    │    └── splash_onboarding_screen.dart # Splash screen saat aplikasi dibuka
+ │    └── widgets/                  # UI Components (CustomShimmerLoader, NewsCardWidget)
+ ├── constants/
+ │    ├── app_colors.dart           # Sentralisasi kode warna (Palet Dark)
+ │    └── app_themes.dart           # Konfigurasi Tema (Dark Theme default)
+ └── berita.dart                    # Entry point aplikasi (void main)
+
+4. FITUR UTAMA
+- Real-time News API: Mengambil berita game terbaru secara otomatis.
+- Smart Translation: Fitur untuk menerjemahkan berita internasional ke bahasa Indonesia menggunakan Google Translate API.
+- Offline Fallback: Aplikasi tidak akan crash jika internet mati atau API Firebase belum dikonfigurasi. Aplikasi otomatis menyajikan data cadangan.
+- Original Source Link: Mematuhi Hukum Hak Cipta dengan tombol URL Launcher ke situs penerbit berita asli.
+- User Profile: Menampilkan statistik simpan (bookmark) dan suka (likes) pengguna.
+- Legal & Dukungan: Akses in-app menuju Kebijakan Privasi, Syarat Ketentuan, dan Email Kontak.
+
+5. KEAMANAN & KEPATUHAN GOOGLE PLAY (COMPLIANCE)
+- AndroidManifest.xml bersih dari izin berbahaya (Hanya memakai INTERNET & READ_EXTERNAL_STORAGE).
+- Bebas dari WebView Internal untuk mematuhi Safe Browsing.
+- Iklan (AdMob): Belum diaktifkan. Berstatus Ad-Free.
+- Perlindungan Crash: Data statis siap pakai ketika terjadi galat (error) jaringan.
+
+6. DAFTAR DEPENDENSI INTI (pubspec.yaml)
+- provider, firebase_core, cloud_firestore, firebase_auth
+- cached_network_image, lottie, flutter_animate
+- url_launcher (Untuk melempar user ke sumber berita & web support)
+- intl, google_fonts
+
+=============================================================================
+CATATAN UNTUK PENGEMBANG:
+Jika ingin mengaktifkan fitur Real-Time Database atau Sistem Komentar online, 
+developer wajib membuat dan memasukkan file `google-services.json` ke dalam 
+direktori `android/app/`. Tanpa file tersebut, aplikasi akan terus berjalan 
+menggunakan sistem "Offline Mock Data" (Mode Demo/Aman).
+=============================================================================
