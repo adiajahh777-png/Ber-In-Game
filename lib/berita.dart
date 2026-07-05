@@ -9,7 +9,7 @@ import 'providers/tournament_provider.dart';
 import 'views/screens/splash_onboarding_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.en-sureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   
   // Inisialisasi Lokalisasi Tanggal (Bahasa Indonesia) demi kelancaran parsing DateFormat
   try {

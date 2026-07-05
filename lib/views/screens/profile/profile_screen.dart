@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../providers/auth_provider.dart';
 import '../../../providers/news_provider.dart';
 import '../../../constants/app_colors.dart';
@@ -226,7 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: const Text('Terjemahkan Berita ke Indonesia', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white)),
                         subtitle: const Text('Otomatis menerjemahkan berita berbahasa Inggris.', style: TextStyle(fontSize: 10, color: AppColors.textSecondary)),
                         value: newsProvider.isTranslated,
-                        activeColor: AppColors.secondary,
+                        activeThumbColor: AppColors.secondary,
                         onChanged: (val) {
                           newsProvider.toggleTranslation();
                         },
@@ -286,6 +287,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ).animate().fadeIn(delay: 200.ms),
+                    const SizedBox(height: 24),
+
+                    // 4. Informasi & Dukungan (Wajib untuk Google Play News Policy)
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.surface,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.white.withValues(alpha: 0.04)),
+                      ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: const Icon(Icons.privacy_tip_outlined, color: AppColors.primary),
+                            title: const Text('Kebijakan Privasi', style: TextStyle(fontSize: 12, color: Colors.white)),
+                            trailing: const Icon(Icons.chevron_right, size: 16, color: AppColors.textMuted),
+                            onTap: () async {
+                              final url = Uri.parse('https://adiajahh777-png.github.io/Website-Saya/privacy.html');
+                              if (!await launchUrl(url)) {
+                                debugPrint('Could not launch $url');
+                              }
+                            },
+                          ),
+                          const Divider(height: 1, color: AppColors.surfaceSecondary),
+                          ListTile(
+                            leading: const Icon(Icons.description_outlined, color: AppColors.primary),
+                            title: const Text('Syarat & Ketentuan', style: TextStyle(fontSize: 12, color: Colors.white)),
+                            trailing: const Icon(Icons.chevron_right, size: 16, color: AppColors.textMuted),
+                            onTap: () async {
+                              final url = Uri.parse('https://adiajahh777-png.github.io/Website-Saya/terms.html');
+                              if (!await launchUrl(url)) {
+                                debugPrint('Could not launch $url');
+                              }
+                            },
+                          ),
+                          const Divider(height: 1, color: AppColors.surfaceSecondary),
+                          ListTile(
+                            leading: const Icon(Icons.mail_outline, color: AppColors.primary),
+                            title: const Text('Hubungi Kami', style: TextStyle(fontSize: 12, color: Colors.white)),
+                            trailing: const Icon(Icons.chevron_right, size: 16, color: AppColors.textMuted),
+                            onTap: () async {
+                              final url = Uri.parse('mailto:adiajahh777@gmail.com');
+                              if (!await launchUrl(url)) {
+                                debugPrint('Could not launch $url');
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ).animate().fadeIn(delay: 300.ms),
+                    const SizedBox(height: 24),
                   ],
                 ),
               ),

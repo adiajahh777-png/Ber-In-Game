@@ -67,6 +67,8 @@ class ArticleModel {
   final int likesCount;
   final DateTime publishedAt;
   final bool isTrending;
+  final String sourceName;
+  final String sourceUrl;
 
   ArticleModel({
     required this.id,
@@ -79,6 +81,8 @@ class ArticleModel {
     this.likesCount = 0,
     required this.publishedAt,
     required this.isTrending,
+    this.sourceName = 'Sumber Asli',
+    this.sourceUrl = 'https://beritainternasionalgamers.com',
   });
 
   /// Membuat object [ArticleModel] baru dengan data terubah.
@@ -93,6 +97,8 @@ class ArticleModel {
     int? likesCount,
     DateTime? publishedAt,
     bool? isTrending,
+    String? sourceName,
+    String? sourceUrl,
   }) {
     return ArticleModel(
       id: id ?? this.id,
@@ -105,6 +111,8 @@ class ArticleModel {
       likesCount: likesCount ?? this.likesCount,
       publishedAt: publishedAt ?? this.publishedAt,
       isTrending: isTrending ?? this.isTrending,
+      sourceName: sourceName ?? this.sourceName,
+      sourceUrl: sourceUrl ?? this.sourceUrl,
     );
   }
 
@@ -133,6 +141,8 @@ class ArticleModel {
       likesCount: map['likesCount'] ?? 0,
       publishedAt: parsedTime,
       isTrending: map['isTrending'] ?? false,
+      sourceName: map['sourceName'] ?? 'Sumber Asli',
+      sourceUrl: map['sourceUrl'] ?? 'https://beritainternasionalgamers.com',
     );
   }
 
@@ -148,6 +158,8 @@ class ArticleModel {
       'likesCount': likesCount,
       'publishedAt': Timestamp.fromDate(publishedAt),
       'isTrending': isTrending,
+      'sourceName': sourceName,
+      'sourceUrl': sourceUrl,
     };
   }
 }

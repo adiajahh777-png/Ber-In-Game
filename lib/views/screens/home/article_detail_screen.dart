@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../models/article_model.dart';
 import '../../../providers/news_provider.dart';
 import '../../../providers/auth_provider.dart';
@@ -362,6 +363,57 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                         height: 1.6,
                       ),
                     ).animate().fadeIn(duration: 500.ms),
+                    const SizedBox(height: 24),
+                    // Sumber & Link Asli
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.surfaceSecondary.withValues(alpha: 0.3),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.public, size: 16, color: AppColors.primary),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Sumber Asli: ${widget.article.sourceName}',
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton.icon(
+                              onPressed: () async {
+                                final Uri url = Uri.parse(widget.article.sourceUrl);
+                                if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Tidak dapat membuka link: ${widget.article.sourceUrl}')),
+                                    );
+                                  }
+                                }
+                              },
+                              icon: const Icon(Icons.open_in_new, size: 14),
+                              label: const Text('BACA ARTIKEL SELENGKAPNYA'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primary,
+                                foregroundColor: Colors.white,
+                                textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 32),
 
                     // Section Judul Komentar

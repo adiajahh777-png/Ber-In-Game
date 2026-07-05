@@ -375,6 +375,8 @@ class NewsProvider with ChangeNotifier {
               // Buat tanggal publikasi terkesan baru karena API MMOBomb latestnews tidak menyertakan field date
               publishedAt: DateTime.now().subtract(Duration(hours: index * 2)),
               isTrending: index <= 3, // 3 teratas jadikan trending
+              sourceName: 'MMOBomb',
+              sourceUrl: item['article_url'] ?? 'https://www.mmobomb.com',
             ),
           );
           index++;
